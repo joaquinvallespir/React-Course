@@ -15,7 +15,7 @@
         const App = () => {
             return React.createElement("div", //crea elemento div html
             {}, 
-            React.createElement("h1", "Adopt me!")) //crea elemento hijo de div h1
+            React.createElement("h1", "Adopt me!", React.createElement("h2", "I'm nice"))) //crea elemento hijo de div h1
         };
 
         const container = document.getElementById('root');
