@@ -34,47 +34,28 @@
 // "build": "vite build",
 // "preview": "vite preview
 // npm run dev
-const Pet = (props) => {
-  return React.createElement("div", {}, [
-    React.createElement("h1", {}, props.name),
-    React.createElement("h2", {}, props.animal),
-    React.createElement("h2", {}, props.breed),
-  ]);
-};
+//--------------------ESLint & React-------------------------
+// npm install -D eslint-plugin-import@2.26.0 eslint-plugin-jsx-a11y@6.6.1 eslint-plugin-react@7.31.8
+// revisar https://react-v8.holt.courses/lessons/core-react-concepts/jsx  para configurar .eslintrc.json
+// npm run lint
 
 //react tiene un concepto: one way data flow => puedo pasar datos de app(padre) a pet(hijo)
 //pero no de pet(hijo) a app(padre) el 99% de las veces
 //simplifica el debugging. si app le pasa un error a pet es mas facil localizarlo porque pet no puede causar un error en app solo en pet.
-import React from "react";
+
 //import ReactDOM from "react-dom";
 import { createRoot } from "react-dom";
 //podes importar partes de paquetes (supuestamente es lo que se tiene que hacer) ejemplo: import { createRoot} from "react-dom";
 //hacerlo de esta forma Vite hace que no se importen cosas que no se usan.
-
+import Pet from "./Pet";
 const App = () => {
-  return React.createElement(
-    "div", //crea elemento div html
-    {},
-    [
-      React.createElement("h1", "Adopt me!"),
-      React.createElement(Pet, {
-        animal: "Dog",
-        name: "Luna",
-        breed: "Havanese",
-      }), //app le pasa a pet estas propiedades
-      React.createElement(Pet, {
-        animal: "Bird",
-        name: "Pepper",
-        breed: "Cockatiel"
-      }), //pet no puede molestar a app porque recibe todo de app
-      React.createElement(Pet, {
-        animal: "Cat",
-        name: "Doink",
-        breed: "Mixed",
-      }), //podes pasar cualquier cosa como isDarkMode o URLs
-    ]
-  ); //crea elemento hijo de div h1
-};
+  <div>
+    <h1>Adopt Me!</h1>
+    <Pet name="Luna" animal="Dog" breed="Havanese"/>
+    <Pet name="Pepper" animal="Bird" breed="Cockatiel"/>
+    <Pet name="Doink" animal="Cat" breed="Mixed"/>
+  </div>
+}//es necesario usar capitalizacion para crear un componente y si o si usar el self closing tag
 const container = document.getElementById("root");
 const root = createRoot(container);
-root.render(React.createElement(App));
+root.render(<App/>);
