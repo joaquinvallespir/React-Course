@@ -1,0 +1,19 @@
+{
+    "extends":[
+        "eslint:recommended", //no usar variables que no creaste y esas cosas
+        "prettier" //eslint puede encargarse de partes de formatos SIEMPRE VA AL FINAL
+    ],
+    "plugins": [],
+    "parserOptions": {
+    "ecmaVersion" : 2022,
+    "sourceType": "module",
+    "ecmaFeatures": {
+        "jsx": true
+    }
+},
+"env": {
+    "es6": true,
+    "browser": true,
+    "node": true
+}
+} 
