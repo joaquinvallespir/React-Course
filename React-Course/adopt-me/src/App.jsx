@@ -26,7 +26,14 @@
 //--------------------VITE--------------------------------
 // es una build tool
 // npm i -D vite@3.1.4 @vitejs/plugin-react@2.1.0
-
+// cambiar todo a jsx
+// crear archivo vite.config.js en la carpeta raiz
+// ver el archivo de ejemplo para configurarlo
+// npm i react@18.2.0 react-dom@18.2.0
+// agregar al package.json -> "dev": "vite",
+// "build": "vite build",
+// "preview": "vite preview
+// npm run dev
 const Pet = (props) => {
   return React.createElement("div", {}, [
     React.createElement("h1", {}, props.name),
@@ -38,6 +45,12 @@ const Pet = (props) => {
 //react tiene un concepto: one way data flow => puedo pasar datos de app(padre) a pet(hijo)
 //pero no de pet(hijo) a app(padre) el 99% de las veces
 //simplifica el debugging. si app le pasa un error a pet es mas facil localizarlo porque pet no puede causar un error en app solo en pet.
+import React from "react";
+//import ReactDOM from "react-dom";
+import { createRoot } from "react-dom";
+//podes importar partes de paquetes (supuestamente es lo que se tiene que hacer) ejemplo: import { createRoot} from "react-dom";
+//hacerlo de esta forma Vite hace que no se importen cosas que no se usan.
+
 const App = () => {
   return React.createElement(
     "div", //crea elemento div html
@@ -63,5 +76,5 @@ const App = () => {
   ); //crea elemento hijo de div h1
 };
 const container = document.getElementById("root");
-const root = ReactDOM.createRoot(container);
+const root = createRoot(container);
 root.render(React.createElement(App));
