@@ -11,20 +11,16 @@
     <div id="root">not rendered</div>
     <script src="https://unpkg.com/react@18.2.0/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
-<<<<<<< HEAD
-    <script src="./App.js">
-=======
     <script>
         const App = () => {
             return React.createElement("div", //crea elemento div html
             {}, 
-            React.createElement("h1", "Adopt me!", React.createElement("h2", "I'm nice"))) //crea elemento hijo de div h1
+            React.createElement("h1", "Adopt me!")) //crea elemento hijo de div h1
         };
 
         const container = document.getElementById('root');
         const root = ReactDOM.createRoot(container);
         root.render(React.createElement(App));
->>>>>>> 33a58fbb0130e092a5e9ecf900feaf3e4c217391
     </script>
 
 </body>
