@@ -16,7 +16,7 @@ const SearchParams = () => {
     
     const [animal, setAnimal] = useState("");
     const [breed, setBreed] = useState("");
-    const breeds = useBreedList(animal);
+    const [breeds] = useBreedList(animal);
     
     console.log(breeds);
 //el effect corre cada vez que se actualiza el componente
@@ -75,7 +75,7 @@ async function requestPets()
                         }}
                         >
                             <option />
-                            {breeds[0].map((breed) => ( //recorro el array ANIMALS y me crea un componente option para cada uno
+                            {breeds.map((breed) => ( //recorro el array ANIMALS y me crea un componente option para cada uno
                                 <option key={breed}>{breed}</option>
                             ))}
                     </select>
