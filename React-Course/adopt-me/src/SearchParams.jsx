@@ -16,7 +16,7 @@ const SearchParams = () => {
     
     const [animal, setAnimal] = useState("");
     const [breed, setBreed] = useState("");
-    const [breeds] = useBreedList(animal);
+    const [breeds, status] = useBreedList(animal);
     
     console.log(breeds);
 //el effect corre cada vez que se actualiza el componente
@@ -81,6 +81,7 @@ async function requestPets()
                     </select>
                 </label>
                 <button>Submit</button>
+                <h3 id="status">{status ==="loading" ? status : ""}</h3>
             </form>
             {
                 pets.map(pet =>(
