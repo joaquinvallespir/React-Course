@@ -44,17 +44,17 @@
 //simplifica el debugging. si app le pasa un error a pet es mas facil localizarlo porque pet no puede causar un error en app solo en pet.
 
 //import ReactDOM from "react-dom";
-import { createRoot } from "react-dom";
+import { createRoot } from "react-dom/client";
 //podes importar partes de paquetes (supuestamente es lo que se tiene que hacer) ejemplo: import { createRoot} from "react-dom";
 //hacerlo de esta forma Vite hace que no se importen cosas que no se usan.
-import Pet from "./Pet";
+import SearchParams from "./SearchParams";
 const App = () => {
+  return(
   <div>
     <h1>Adopt Me!</h1>
-    <Pet name="Luna" animal="Dog" breed="Havanese"/>
-    <Pet name="Pepper" animal="Bird" breed="Cockatiel"/>
-    <Pet name="Doink" animal="Cat" breed="Mixed"/>
+    <SearchParams />
   </div>
+  )
 }//es necesario usar capitalizacion para crear un componente y si o si usar el self closing tag
 const container = document.getElementById("root");
 const root = createRoot(container);
