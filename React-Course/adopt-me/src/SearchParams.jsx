@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"; // los effect hacen conexiones con el exterior del componente para traer informacion / API request o localstorage request
-import Pet from "./Pet";
 import useBreedList from "./useBreedList";
+import Results from "./Results";
 const ANIMALS = ["bird", "cat", "dog", "rabbit", "reptile"];
 const SearchParams = () => {
     const [pets, setPets] = useState([]);
@@ -16,7 +16,7 @@ const SearchParams = () => {
     
     const [animal, setAnimal] = useState("");
     const [breed, setBreed] = useState("");
-    const [breeds, status] = useBreedList(animal);
+    const [breeds] = useBreedList(animal);
     
     console.log(breeds);
 //el effect corre cada vez que se actualiza el componente
@@ -81,9 +81,9 @@ async function requestPets()
                     </select>
                 </label>
                 <button>Submit</button>
-                <h3 id="status">{status ==="loading" ? status : ""}</h3>
             </form>
-            {
+                <Results pets={pets}/>
+                { /*
                 pets.map(pet =>(
                     <Pet 
                     name={pet.name} 
@@ -92,7 +92,7 @@ async function requestPets()
                     key={pet.id} //agrego el id como key para que react no se confunda cuando se quiera filtrar por otros campos
                     />
                 ))
-            }
+           */ }
         </div>
     )
 }
