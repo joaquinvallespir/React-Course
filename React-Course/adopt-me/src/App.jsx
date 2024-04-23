@@ -39,21 +39,49 @@
 // revisar https://react-v8.holt.courses/lessons/core-react-concepts/jsx  para configurar .eslintrc.json
 // npm run lint
 
+//--------------------React Query-------------------- simplifica el uso de useEffect y maneja las llamadas a la api
+// npm i @tanstack/react-query@4.10.1
+// instanciar el proveedor de querys
+//import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+//crear query client afuera de la app const queryClient = new QueryClient();
+//crear fetchElemento.js
+
 //react tiene un concepto: one way data flow => puedo pasar datos de app(padre) a pet(hijo)
 //pero no de pet(hijo) a app(padre) el 99% de las veces
 //simplifica el debugging. si app le pasa un error a pet es mas facil localizarlo porque pet no puede causar un error en app solo en pet.
+// poner el componente adentro del browserrouter y el resto de la app adentro del componente
+
 
 //import ReactDOM from "react-dom";
 import { createRoot } from "react-dom/client";
 //podes importar partes de paquetes (supuestamente es lo que se tiene que hacer) ejemplo: import { createRoot} from "react-dom";
 //hacerlo de esta forma Vite hace que no se importen cosas que no se usan.
 import SearchParams from "./SearchParams";
+import  {BrowserRouter, Routes, Route, Link} from "react-router-dom"; 
+import Details from "./Details";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+const queryClient = new QueryClient({
+  defaultOptions:{
+    queries:{
+      staleTime: Infinity,
+      cacheTime: Infinity  //tiempo de cache en milisegundos
+    }
+  }
+});
+
 const App = () => {
   return(
-  <div>
-    <h1>Adopt Me!</h1>
-    <SearchParams />
-  </div>
+  <BrowserRouter>
+    <QueryClientProvider client={queryClient}>
+      <header>
+        <Link to="/">Adopt Me!</Link>
+      </header>
+      <Routes>
+        <Route path="/details/:id" element={<Details />} />
+        <Route path="/" element={<SearchParams/>}/>
+      </Routes>
+    </QueryClientProvider>
+  </BrowserRouter>
   )
 }//es necesario usar capitalizacion para crear un componente y si o si usar el self closing tag
 const container = document.getElementById("root");
