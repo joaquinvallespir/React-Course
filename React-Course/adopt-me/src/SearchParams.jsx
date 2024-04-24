@@ -1,9 +1,10 @@
 //import { useState, useEffect } from "react"; // los effect hacen conexiones con el exterior del componente para traer informacion / API request o localstorage request
-import { useState} from "react";
+import { useState, useContext} from "react";
 import { useQuery } from "@tanstack/react-query";
 import useBreedList from "./useBreedList";
 import Results from "./Results";
 import fetchSearch from "./fetchSearch";
+import AdoptedPetContext from "./AdoptedPetContext";
 
 const ANIMALS = ["bird", "cat", "dog", "rabbit", "reptile"];
 const SearchParams = () => {
@@ -21,7 +22,7 @@ const SearchParams = () => {
     const [animal, setAnimal] = useState("");
    // const [breed, setBreed] = useState("");
     const [breeds] = useBreedList(animal);
-    
+    const [adoptedPet] = useContext(AdoptedPetContext);
     console.log(breeds);
 //el effect corre cada vez que se actualiza el componente
 //// requestPets();
@@ -54,6 +55,13 @@ const SearchParams = () => {
                 };
                 setRequestParams(obj);
                 }}>
+                    {
+                        adoptedPet ? (
+                            <div className="pet image-container">
+                                <img src={adoptedPet.images[0]} alt={adoptedPet.name} />
+                            </div>
+                        ) : null
+                    }
                 <label htmlFor="location"> 
                     Location
                     <input 
